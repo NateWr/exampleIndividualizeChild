@@ -1,0 +1,5 @@
+msgid "plugins.themes.exampleIndividualizeChild.name"
+msgstr "Example Individualize Child Theme"
+
+msgid "plugins.themes.exampleIndividualizeChild.description"
+msgstr "This is an example theme that demonstrates how to customize the way that full-text is extracted when creating a child theme for the Individualize theme."
