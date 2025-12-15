@@ -1,3 +1,30 @@
-.article-section-full-text {
-  background: red;
+/**
+ * Styles for the Music and Minorities example full-text HTML
+ */
+.mm-footnotes,
+.mm-references {
+  font-size: 0.875em;
+}
+
+.mm-footnotes li {
+  list-style: decimal;
+}
+
+.mm-footnotes li + li {
+  margin-top: 0.75em;
+}
+
+.article-section-full-text table td {
+  vertical-align: top;
+}
+
+/**
+ * Styles for the Musicologica Austriaca example full-text HTML
+ */
+.musau-references {
+  font-size: 0.875em;
+}
+
+.musau-references li + li {
+  margin-top: 0.75em;
 }

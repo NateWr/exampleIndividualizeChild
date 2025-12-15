@@ -1,6 +1,7 @@
 <?php
 import('lib.pkp.classes.plugins.ThemePlugin');
-import('plugins.themes.exampleIndividualizeChild.ExampleIndividualizeFullText');
+import('plugins.themes.exampleIndividualizeChild.MMExampleFullText');
+import('plugins.themes.exampleIndividualizeChild.MusauExampleFullText');
 
 class ExampleIndividualizeChild extends ThemePlugin
 {
@@ -36,9 +37,10 @@ class ExampleIndividualizeChild extends ThemePlugin
      *
      * @see ExampleIndividualizeFullTextExtractor
      */
-    public function getFullTextExtractor(string $html, ArticleGalley $galley, Submission $submission): ?ExampleIndividualizeFullText
+    public function getFullTextExtractor(string $html, ArticleGalley $galley, Submission $submission): ?IndividualizeThemeFullText
     {
-        return new ExampleIndividualizeFullText($html, $galley, $submission);
+        return new MMExampleFullText($html, $galley, $submission);
+        // return new MusauExampleFullText($html, $galley, $submission);
     }
 
     public function getDisplayName()
