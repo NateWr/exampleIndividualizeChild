@@ -23,5 +23,6 @@ Each full-text extractor extends `IndividualizeThemeFullText` from the [Individu
 3. Separate the main article from the references and handle endnotes or multiple sections of references.
 4. Restructure headings like `<h2>` so that they are nested correctly on the page. (The Individualize theme puts article content under a `<h2>Full Text</h2>` heading, so headings within the article should typically start at `<h3>`.)
 5. Make sure all headings have appropriate `id` attributes, so that the table of contents can link to the heading.
-6. Replace dependent file URLs (use the helper methods `getDependentFiles()` and `replaceDependentFileUrls()`).
+6. Remove references or other elements from the headings that shouldn't appear in the Table of Contents.
+7. Replace dependent file URLs (use the helper methods `getDependentFiles()` and `replaceDependentFileUrls()`).
 
