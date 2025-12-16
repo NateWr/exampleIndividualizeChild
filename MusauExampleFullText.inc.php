@@ -2,16 +2,11 @@
 import('plugins.themes.individualizeTheme.classes.IndividualizeThemeFullText');
 
 /**
- * Example implementation of a child class to
- * customize the full-text HTML that is extracted
- * from a HTML galley.
+ * Extract full-text HTML from the example HTML file
+ * from Musicologica Austriaca
  *
  * The full string of the HTML galley is located
- * at $this->html. Uncomment one of these plugins
- * to override it and extract the appropriate
- * content from the galley.
- *
- * Use $this->getDependentFiles() and
+ * at $this->html. Use $this->getDependentFiles() and
  * $this->replaceDependendentFileUrls() to replace
  * URLs to images, videos and other assets that
  * are referenced in the HTML galley. This does not
@@ -33,6 +28,20 @@ class MusauExampleFullText extends IndividualizeThemeFullText
         // Remove the back to index and next article buttons just before the references
         $article = preg_replace('/(<table[\s\S]*?back to index[\s\S]*<\/table>[\s]*?)$/i', '', $article);
 
+        // Change the heading levels
+        $article = preg_replace('/<h2/i', '<h3', $article);
+        $article = preg_replace('/<\/h2/i', '</h3', $article);
+
+        // Add `id` attributes to the section headings, which are needed to
+        // support the links in the table of contents. These are taken from
+        // empty <div name="..."></div> elements which appear just before
+        // each section heading.
+        $article = preg_replace(
+            '/<div[^>]*name="([^"]*)"[^>]*>[^<]*<\/div><(h3)[^>]*>([\s\S]*?)<\/h3>/i',
+            '<$2 id="$1">$3</$2>',
+            $article
+        );
+
         $article = $this->replaceEndnoteUrls($article);
 
         $dependentFiles = $this->getDependentFiles();
@@ -51,11 +60,6 @@ class MusauExampleFullText extends IndividualizeThemeFullText
 
         // Wrap in a unique class so we can target them with CSS styles
         return '<div class="musau-references">' . $references . '</div>';
-    }
-
-    public function getTableOfContents(string $article, bool $includeReferences, int $startLevel = 3, int $depth = 4): array
-    {
-        return [];
     }
 
     /**
